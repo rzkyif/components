@@ -1,0 +1,47 @@
+---
+import Default from './Default.astro';
+
+export interface Props {
+	name: string
+	description: string
+	valign?: string
+	halign?: string
+}
+
+const { name, description, valign = "top", halign = "center" } = Astro.props
+---
+
+<Default title={`${name} Component`}>
+	<div class="
+		flex flex-col p-8
+		text-neutral-100 bg-neutral-600
+		dark:text-neutral-900 dark:bg-neutral-300
+	">
+		<h1 class="font-extrabold text-4xl mb-4 mt-6">{name}</h1>
+		<h2 class="mt-2">{description}</h2>
+	</div>
+	<main class={`relative flex flex-col w-full p-8 h-[calc(100vh-60px)] max-h-[calc(100vh-60px)] ${valign=='top'?'vtop':''} ${valign=='center'?'vcenter':''} ${valign=='bottom'?'vbottom':''} ${halign=='left'?'hleft':''} ${halign=='center'?'hcenter':''} ${halign=='right'?'hright':''}`}>
+		<slot />
+	</main>
+</Default>
+
+<style>
+	.hleft {
+		@apply items-start;
+	}
+	.hcenter {
+		@apply items-center;
+	}
+	.hright {
+		@apply items-end;
+	}
+	.vtop {
+		@apply justify-start;
+	}
+	.vcenter {
+		@apply justify-center;
+	}
+	.vbottom {
+		@apply justify-end;
+	}
+</style>
