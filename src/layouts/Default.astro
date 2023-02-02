@@ -27,13 +27,32 @@ font-sans dark
 		</script>
 	</head>
 	<body class="
-		flex flex-col items-center max-h-screen overflow-x-hidden overflow-y-scroll
-		text-neutral-900 bg-neutral-200 
-		dark:text-neutral-200 dark:bg-neutral-800
+		flex flex-col items-center h-screen max-h-screen overflow-x-hidden overflow-y-scroll
+		text-[var(--text-light)] bg-[var(--bg-light-5)]
+		dark:text-[var(--text-dark)] dark:bg-[var(--bg-dark-5)]
 	">
 		<Header client:load/>
-		<div class="flex flex-col w-screen max-w-5xl bg-neutral-300 dark:bg-neutral-900">
+		<div class="flex flex-col flex-1 w-screen max-w-5xl bg-[var(--bg-light-4)] dark:bg-[var(--bg-dark-4)]">
 			<slot />
 		</div>
 	</body>
 </html>
+
+<style is:global>
+	:root {
+		--text-light: #0f0f0f;
+		--text-dark: #f0f0f0;
+		--bg-light-4: #f0f0f0;
+		--bg-light-5: #f8f8f8;
+		--bg-light-6: #ffffff;
+		--bg-dark-4: #000000;
+		--bg-dark-5: #080808;
+		--bg-dark-6: #0f0f0f;
+		--accent-dark-4: #f0f0f0;
+		--accent-dark-5: #f8f8f8;
+		--accent-dark-6: #ffffff;
+		--accent-light-4: #000000;
+		--accent-light-5: #080808;
+		--accent-light-6: #0f0f0f;
+	}
+</style>

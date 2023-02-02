@@ -7,7 +7,6 @@ module.exports = {
 			'sans': ['system-ui', '-apple-system', 'sans-serif'],
 			'mono': ['Menlo', 'Monaco', 'monospace', 'ui-monospace']
 		},
-		extend: {},
 	},
 	plugins: [],
 }

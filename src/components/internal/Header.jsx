@@ -2,6 +2,7 @@ import { useState } from "react"
 import IconLight from "~icons/material-symbols/light-mode"
 import IconDark from "~icons/material-symbols/dark-mode"
 import IconSystem from "~icons/mdi/theme-light-dark"
+import IconGithub from "~icons/mdi/github"
 import { useEffect } from "react"
 
 export default function Header() {
@@ -34,7 +35,7 @@ export default function Header() {
   return (
     <header className="
       w-screen sticky top-0
-      bg-neutral-300 dark:bg-neutral-900
+      bg-[var(--bg-light-4)] dark:bg-[var(--bg-dark-6)]
       flex justify-center
       text-xl select-none
     ">
@@ -45,20 +46,25 @@ export default function Header() {
       ">
         <a className="
           font-extrabold font-sans whitespace-nowrap cursor-pointer
-        " href="/components">
+        " href="/components/">
           rzkyif's Components
         </a>
-        <button className="ml-auto" onClick={toggleTheme} title={
-          (theme == "dark") ? "Switch to Light Theme" :
-          (theme == "light") ? "Switch to System Theme" :
-          "Switch to Dark Theme"
-        }>
-          {
-            (theme == "dark") ? <IconDark/> :
-            (theme == "light") ? <IconLight/> :
-            <IconSystem/>
-          }
-        </button>
+        <div className="flex ml-auto items-center">
+          <a href="https://github.com/rzkyif/components" target="_blank">
+            <IconGithub/>
+          </a>
+          <button className="ml-2" onClick={toggleTheme} title={
+            (theme == "dark") ? "Switch to Light Theme" :
+            (theme == "light") ? "Switch to System Theme" :
+            "Switch to Dark Theme"
+          }>
+            {
+              (theme == "dark") ? <IconDark/> :
+              (theme == "light") ? <IconLight/> :
+              <IconSystem/>
+            }
+          </button>
+        </div>
       </div>
     </header>
   )

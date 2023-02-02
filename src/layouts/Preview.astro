@@ -1,5 +1,6 @@
 ---
 import Default from './Default.astro';
+import Icon from 'astro-icon'
 
 export interface Props {
 	name: string
@@ -14,13 +15,20 @@ const { name, description, valign = "top", halign = "center" } = Astro.props
 <Default title={`${name} Component`}>
 	<div class="
 		flex flex-col p-8
-		text-neutral-100 bg-neutral-600
-		dark:text-neutral-900 dark:bg-neutral-300
+		text-[var(--text-dark)] bg-[var(--accent-light-6)]
+		dark:text-[var(--text-light)] dark:bg-[var(--accent-dark-4)]
 	">
-		<h1 class="font-extrabold text-4xl mb-4 mt-6">{name}</h1>
+		<div class="flex items-center mb-4 mt-6">
+			<h1 class="font-extrabold text-4xl">{name}</h1>
+			<a 
+				href={`https://github.com/rzkyif/components/tree/master/src/components/${name}.jsx`}
+				target="_blank"
+				class="ml-auto underline text-sm"
+			><Icon pack="mdi" name="link-variant" class="h-8"/></a>
+		</div>
 		<h2 class="mt-2">{description}</h2>
 	</div>
-	<main class={`relative flex flex-col w-full p-8 h-[calc(100vh-60px)] max-h-[calc(100vh-60px)] ${valign=='top'?'vtop':''} ${valign=='center'?'vcenter':''} ${valign=='bottom'?'vbottom':''} ${halign=='left'?'hleft':''} ${halign=='center'?'hcenter':''} ${halign=='right'?'hright':''}`}>
+	<main class={`relative flex flex-col w-full p-8 flex-1 ${valign=='top'?'vtop':''} ${valign=='center'?'vcenter':''} ${valign=='bottom'?'vbottom':''} ${halign=='left'?'hleft':''} ${halign=='center'?'hcenter':''} ${halign=='right'?'hright':''}`}>
 		<slot />
 	</main>
 </Default>
