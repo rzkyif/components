@@ -15,20 +15,19 @@ const { name, description, valign = "top", halign = "center" } = Astro.props
 <Default title={name} description={description}>
 	<div class="
 		flex flex-col p-8
-		text-[var(--text-dark)] bg-[var(--accent-light-6)]
-		dark:text-[var(--text-light)] dark:bg-[var(--accent-dark-4)]
+		text-[var(--text-inverse)] bg-[var(--accent-6)]
 	">
 		<div class="flex items-center mb-4 mt-6">
 			<h1 class="font-extrabold text-4xl">{name}</h1>
 			<a 
 				href={`https://github.com/rzkyif/components/tree/master/src/components/${name}.jsx`}
 				target="_blank"
-				class="ml-auto underline text-sm"
+				class="ml-auto underline text-sm p-2 rounded-full hover:outline"
 			><Icon pack="mdi" name="link-variant" class="h-8"/></a>
 		</div>
 		<h2 class="mt-2">{description}</h2>
 	</div>
-	<main class={`relative flex flex-col w-full p-8 flex-1 ${valign=='top'?'vtop':''} ${valign=='center'?'vcenter':''} ${valign=='bottom'?'vbottom':''} ${halign=='left'?'hleft':''} ${halign=='center'?'hcenter':''} ${halign=='right'?'hright':''}`}>
+	<main class={`relative flex flex-col w-full p-8 flex-1 bg-[var(--bg-6)] ${valign=='top'?'vtop':''} ${valign=='center'?'vcenter':''} ${valign=='bottom'?'vbottom':''} ${halign=='left'?'hleft':''} ${halign=='center'?'hcenter':''} ${halign=='right'?'hright':''}`}>
 		<slot />
 	</main>
 </Default>

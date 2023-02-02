@@ -35,28 +35,28 @@ export default function Header() {
   return (
     <header className="
       w-screen sticky top-0
-      bg-[var(--bg-light-4)] dark:bg-[var(--bg-dark-6)]
+      bg-[var(--bg-6)]
       flex justify-center
       text-xl select-none
     ">
       <div className="
         py-4 px-8
-        flex
+        flex items-center
         w-screen max-w-5xl
       ">
         <a className="
-          font-extrabold font-mono whitespace-nowrap cursor-pointer
+          font-extrabold font-mono whitespace-nowrap cursor-pointer hover:underline
         " href="/components/">
           rzkyif / components
         </a>
         <div className="flex ml-auto items-center">
-          <a href="https://github.com/rzkyif/components" target="_blank">
+          <a href="https://github.com/rzkyif/components" target="_blank" className="p-1 rounded-full hover:outline">
             <IconGithub/>
           </a>
-          <button className="ml-3" onClick={toggleTheme} title={
-            (theme == "dark") ? "Switch to Light Theme" :
-            (theme == "light") ? "Switch to System Theme" :
-            "Switch to Dark Theme"
+          <button className="ml-3 p-1 rounded-full hover:outline" onClick={toggleTheme} title={
+            (theme == "dark") ? "Dark Theme" :
+            (theme == "light") ? "Light Theme" :
+            "System Theme"
           }>
             {
               (theme == "dark") ? <IconDark/> :

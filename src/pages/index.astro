@@ -9,14 +9,13 @@ const COMPONENTS = [
 <Default title="rzkyif / components" description="A collection of front-end components.">
 	<div class="
 		flex flex-col flex-1 items-center justify-center p-8
-		 bg-[var(--bg-light-4)]
-		 dark:bg-[var(--bg-dark-6)]
+		 bg-[var(--bg-4)]
 	">
 		<div class="flex flex-wrap justify-center">
       {
         COMPONENTS.map(([componentName, componentLink]) => (
           <a
-            class = "text-4xl py-4 px-8 my-2 mx-2 font-bold hover:outline text-neutral-900 bg-neutral-300 dark:text-neutral-200 dark:bg-neutral-700 rounded-xl"
+            class = "text-4xl py-4 px-8 my-2 mx-2 font-bold bg-[var(--bg-6)] outline outline-[var(--bg-5)] hover:outline-black dark:hover:outline-white rounded-xl"
             href = {`/components/${componentLink}`}
           >
             {componentName}
