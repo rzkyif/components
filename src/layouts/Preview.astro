@@ -7,9 +7,10 @@ export interface Props {
 	description: string
 	valign?: string
 	halign?: string
+	minw?: number
 }
 
-const { name, description, valign = "top", halign = "center" } = Astro.props
+const { name, description, valign = "top", halign = "center", minw = 0 } = Astro.props
 ---
 
 <Default title={name} description={description}>
@@ -25,30 +26,34 @@ const { name, description, valign = "top", halign = "center" } = Astro.props
 				class="ml-auto underline text-sm p-2 rounded-full hover:outline"
 			><Icon pack="mdi" name="link-variant" class="h-8"/></a>
 		</div>
-		<h2 class="mt-2">{description}</h2>
+		{
+			description.split("\n").map((part) => (
+				<h2 class="mt-2">{part}</h2>
+			))
+		}
+		<span id="width-warning" class="
+			flex py-2 px-4 mt-4 ml-auto justify-center 
+			text-justify text-xs sm:text-sm font-semibold
+			bg-orange-300 rounded-xl
+		" data-minw={minw}>
+			This component is designed for a minimum width of {minw}px.{minw<640?" Not fit for mobile devices.":""}
+		</span>
+		<script>
+			const widthWarningElement = document.getElementById("width-warning")
+			function checkWidth() {
+				if (window.innerWidth - 64 >= parseInt(widthWarningElement.dataset.minw)) {
+					widthWarningElement.classList.add("hidden")
+				} else {
+					widthWarningElement.classList.remove("hidden")
+				}
+			}
+			window.addEventListener('resize', checkWidth, {passive: true})
+			checkWidth()
+		</script>
 	</div>
-	<main class={`relative flex flex-col w-full p-8 flex-1 bg-[var(--bg-6)] ${valign=='top'?'vtop':''} ${valign=='center'?'vcenter':''} ${valign=='bottom'?'vbottom':''} ${halign=='left'?'hleft':''} ${halign=='center'?'hcenter':''} ${halign=='right'?'hright':''}`}>
-		<slot />
+	<main class="relative flex flex-col w-full p-4 flex-1 bg-[var(--bg-4)]">
+		<div class={`flex flex-col w-full h-full p-4 bg-transparent border-2 border-dashed border-[var(--text)] ${valign=='top'?'justify-start':''} ${valign=='center'?'justify-center':''} ${valign=='bottom'?'justify-end':''} ${halign=='left'?'items-start':''} ${halign=='center'?'items-center':''} ${halign=='right'?'items-end':''}`}>
+			<slot />
+		</div>
 	</main>
 </Default>
-
-<style>
-	.hleft {
-		@apply items-start;
-	}
-	.hcenter {
-		@apply items-center;
-	}
-	.hright {
-		@apply items-end;
-	}
-	.vtop {
-		@apply justify-start;
-	}
-	.vcenter {
-		@apply justify-center;
-	}
-	.vbottom {
-		@apply justify-end;
-	}
-</style>

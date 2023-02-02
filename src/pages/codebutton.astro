@@ -5,9 +5,13 @@ import CodeButton from '../components/CodeButton';
 
 <Preview 
   name="CodeButton" 
-  description="My attempt at the green 'Code' button on Github repository pages."
+  description={`
+    My attempt at the green 'Code' button on Github repository pages.
+    I initially thought that it would be a simple one, but it turns out that it's a little more complex than I expected. Quite a lot of the parts can be split into smaller components, which I suspect is done in the original version.
+  `}
   valign="top"
   halign="right"
+  minw={400}
 >
-	<CodeButton />
+	<CodeButton client:load/>
 </Preview>

@@ -1,0 +1,203 @@
+/* -------------------------------------------------------------------------- */
+/*                               details element                              */
+/* -------------------------------------------------------------------------- */
+
+.codeButton {
+  list-style: none;
+  width: min-content;
+  overflow: visible;
+}
+
+.codeButton > .codeButtonSummary::marker {
+  display: none;
+}
+
+/* -------------------------------------------------------------------------- */
+/*                               summary element                              */
+/* -------------------------------------------------------------------------- */
+
+.codeButtonSummary {
+  @apply 
+    flex items-center 
+    px-2 py-1 rounded-md gap-1 h-8
+    border-[#30363d] border
+    text-white bg-[#238636] font-semibold select-none text-sm
+    hover:bg-[#2ea643]
+    active:bg-[#5bd171]
+}
+
+.codeButton[open] > .codeButtonSummary::before {
+  @apply 
+    block content-[""]
+    inset-0
+    fixed
+}
+
+/* -------------------------------------------------------------------------- */
+/*                                    panel                                   */
+/* -------------------------------------------------------------------------- */
+
+/* -------------------------------- container ------------------------------- */
+
+.codeButtonPanelContainer {
+  @apply
+    relative block
+}
+
+/* ------------------------------- tab picker ------------------------------- */
+
+.codeButtonPanelTabPicker {
+  @apply
+    flex border-[#30363d] text-sm
+}
+
+.codeButtonPanelTabPicker > button {
+  @apply
+    flex-1 py-2 px-4 rounded-md m-[-1px] rounded-b-none
+    text-[#a6acb3] hover:text-white border 
+    border-b-[#30363d] border-transparent
+}
+
+.codeButtonPanelTabPicker > button[current] {
+  @apply
+  text-[#C9D1D9]
+  border-[#30363d] border-b-transparent  
+}
+
+/* ---------------------------------- panel --------------------------------- */
+
+.codeButtonPanelContainer > div {
+  @apply
+    absolute flex flex-col rounded-md
+    top-2 right-0
+    w-[400px] bg-[#161b22] text-sm text-[#C9D1D9] border-[#30363d] border
+}
+
+.codeButtonPanelContainer > div::after {
+  @apply
+    absolute right-2 
+    block content-[""] 
+    w-0 h-0 border-[8px] border-transparent border-b-[#161b22] -top-4
+}
+
+/* -------------------------------- panel row ------------------------------- */
+
+.codeButtonPanelContainer > div > ul > li {
+  @apply
+    p-4 flex flex-col border-b border-[#30363d] mb-[-1px]
+}
+.codeButtonPanelContainer > div > ul > li:last-child {
+  @apply
+    border-none
+}
+
+/* -------------------------------------------------------------------------- */
+/*                                    other                                   */
+/* -------------------------------------------------------------------------- */
+
+/* -------------------------------- help mark ------------------------------- */
+
+.helpMark {
+  @apply
+    flex rounded-full relative box-border
+    outline outline-2 
+    ml-auto 
+    text-[0.7rem] font-bold
+    justify-center items-center w-4 h-4
+    hover:text-blue-400
+}
+.helpMark > span {
+  display: none;
+}
+.helpMark:hover > span {
+  @apply
+    flex absolute top-full right-0 mt-2 p-2 rounded-md rounded-tr-none
+    text-[#C9D1D9] whitespace-nowrap 
+    bg-neutral-600/50
+}
+
+/* --------------------------------- buttons -------------------------------- */
+
+.button {
+  @apply
+    hover:bg-neutral-500/25 active:bg-neutral-300/25 hover:text-white rounded-md
+}
+
+.singleLetterButton {
+  composes: button;
+  @apply
+    flex w-8 h-8 mx-1 justify-center items-center font-bold text-base
+}
+
+/* ----------------------------- tab navigation ----------------------------- */
+
+.tabNavigationButton {
+  composes: button;
+  @apply
+    py-1 px-2 mt-2 border-transparent border-2 rounded-b-none
+}
+.tabNavigationButton[current] {
+  @apply
+    border-b-orange-500 text-white
+}
+
+/* ------------------------------- copy field ------------------------------- */
+
+.copyField {
+  @apply
+    flex w-full items-center my-2 relative
+}
+.copyField > input {
+  @apply
+    flex-1 py-1 px-2 text-xs font-mono
+    border border-[#30363d] 
+    bg-transparent rounded-l-md 
+    outline-none
+
+}
+.copyField > button {
+  @apply
+    flex h-full
+    border border-l-0 border-[#30363d] rounded-r-md py-1 px-2
+    hover:bg-neutral-500/25 active:bg-neutral-300/25
+}
+
+/* ------------------------------ basic layout ------------------------------ */
+
+.row {
+  @apply
+    flex items-center gap-2
+}
+
+.leftColumn {
+  @apply
+    flex flex-col gap-2
+}
+
+.centerColumn {
+  composes: leftColumn;
+  @apply
+    items-center gap-4
+}
+
+.rightAlign {
+  @apply
+    flex ml-auto
+}
+
+/* ---------------------------- basic formatting ---------------------------- */
+
+.smallDimText {
+  @apply
+    text-xs text-[#8b949e] text-center
+}
+
+.boldText {
+  @apply
+    text-base font-bold
+}
+
+.linkText {
+  @apply
+    text-xs text-blue-300 hover:underline
+}
