@@ -1,3 +1,3 @@
 # components
 
-A collection of random front-end components I made.
+A collection of front-end components.
