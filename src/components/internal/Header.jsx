@@ -53,7 +53,7 @@ export default function Header() {
           <a href="https://github.com/rzkyif/components" target="_blank" className="p-1 rounded-full hover:outline">
             <IconGithub/>
           </a>
-          <button className="ml-3 p-1 rounded-full hover:outline" onClick={toggleTheme} title={
+          <button className="ml-2 p-1 rounded-full hover:outline" onClick={toggleTheme} title={
             (theme == "dark") ? "Dark Theme" :
             (theme == "light") ? "Light Theme" :
             "System Theme"
