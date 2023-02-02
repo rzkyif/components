@@ -45,15 +45,15 @@ export default function Header() {
         w-screen max-w-5xl
       ">
         <a className="
-          font-extrabold font-sans whitespace-nowrap cursor-pointer
+          font-extrabold font-mono whitespace-nowrap cursor-pointer
         " href="/components/">
-          rzkyif's Components
+          rzkyif / components
         </a>
         <div className="flex ml-auto items-center">
           <a href="https://github.com/rzkyif/components" target="_blank">
             <IconGithub/>
           </a>
-          <button className="ml-2" onClick={toggleTheme} title={
+          <button className="ml-3" onClick={toggleTheme} title={
             (theme == "dark") ? "Switch to Light Theme" :
             (theme == "light") ? "Switch to System Theme" :
             "Switch to Dark Theme"
