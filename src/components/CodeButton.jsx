@@ -62,6 +62,7 @@ const CLONE_METHODS = [
 
 /**
  * CodeButton Component
+ * 
  * My attempt at the green 'Code' button on Github repository pages.
  * 
  * Prop:
