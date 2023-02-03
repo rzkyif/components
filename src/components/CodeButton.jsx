@@ -1,5 +1,20 @@
+/**
+ * CodeButton
+ * React Component
+ * 
+ * My attempt at the green 'Code' button on Github repository pages.
+ * 
+ * by rzkyif
+ */
+
+/* -------------------------------------------------------------------------- */
+/*                                   imports                                  */
+/* -------------------------------------------------------------------------- */
+
+/* -------------------------------- external -------------------------------- */
 import { useState, useRef } from "react"
 
+/* ---------------------------------- icons --------------------------------- */
 import IconCode from "~icons/material-symbols/code"
 import IconMore from "~icons/ic/baseline-expand-more"
 import IconLess from "~icons/ic/baseline-expand-less"
@@ -8,46 +23,66 @@ import IconCopy from "~icons/material-symbols/content-copy"
 import IconPC from "~icons/material-symbols/install-desktop"
 import IconZip from "~icons/material-symbols/folder-zip"
 
+/* ---------------------------------- style --------------------------------- */
 import s from "./CodeButton.module.css"
 
-// component constants
+/* -------------------------------------------------------------------------- */
+/*                                  constants                                 */
+/* -------------------------------------------------------------------------- */
+
+/* --------------------------- component constants -------------------------- */
+
+// add more tabs by modifying this constant
 const TABS = ["Local", "Codespaces"]
 
-// local tab constants
+/* --------------------------- local tab constants -------------------------- */
+
+// add more clone methods by modifying this constant
 const CLONE_METHODS = [
   [
     "HTTPS",
-    "https://github.com/rzkyif/components.git",
+    "https://github.com/%REPOSITORY%.git",
     "Use Git or checkout with SVN using the web URL."
   ],
   [
     "SSH",
-    "git@github.com:rzkyif/components.git",
+    "git@github.com:%REPOSITORY%.git",
     "Use a password-protected SSH key."
   ],
   [
     "GitHub CLI",
-    "gh repo clone rzkyif/components",
+    "gh repo clone %REPOSITORY%",
     "Work fast with our official CLI."
   ]
 ]
 
-export default function CodeButton() {
+/* -------------------------------------------------------------------------- */
+/*                                  component                                 */
+/* -------------------------------------------------------------------------- */
+
+/**
+ * CodeButton Component
+ * My attempt at the green 'Code' button on Github repository pages.
+ * 
+ * Prop:
+ * - `repository`: the Github repository in which this component is located
+ * 
+ * @param {{ repository; }} props
+ * @returns JSX.Element
+ */
+export default function CodeButton({ repository }) {
+
   // component state
   const [open, setOpen] = useState(false)
   const [tab, setTab] = useState("Local")
 
   // local tab state
-  const [cloneMethod, _setCloneMethod] = useState(0)
-  const cloneMethodField = useRef()
-  function setCloneMethod(value) {
-    _setCloneMethod(value)
-    cloneMethodField.current.value = CLONE_METHODS[value][1]
-  }
+  const [cloneMethod, setCloneMethod] = useState(0)
 
   return (
     <details className={s.codeButton}>
 
+      {/* the green button */}
       <summary 
         className={s.codeButtonSummary} 
         onClick={() => setOpen(open => !open)}
@@ -57,8 +92,11 @@ export default function CodeButton() {
         {open ? <IconLess/> : <IconMore/>}
       </summary>
 
+      {/* the panel */}
       <div className={s.codeButtonPanelContainer}>
         <div>
+
+          {/* tab picker */}
           <div className={s.codeButtonPanelTabPicker}>
             {
               TABS.map((tabName) => (
@@ -72,8 +110,11 @@ export default function CodeButton() {
               ))
             }
           </div>
+
+          {/* tab content */}
           <ul>
             {
+              /* local tab content */
               (tab == "Local") ? (
                 <>
                   <li>
@@ -103,7 +144,7 @@ export default function CodeButton() {
                       }
                     </div>
                     <div className={s.copyField}>
-                      <input readOnly type="text" ref={cloneMethodField} value={CLONE_METHODS[cloneMethod][1]} onClick={(e) => e.target.select()}/>
+                      <input readOnly type="text" value={CLONE_METHODS[cloneMethod][1].replace("%REPOSITORY%", repository)} onClick={(e) => e.target.select()}/>
                       <button onClick={() => navigator.clipboard.writeText(CLONE_METHODS[cloneMethod][1])}><IconCopy/></button>
                     </div>
                     <div className={s.row}>
@@ -131,6 +172,7 @@ export default function CodeButton() {
               ) : null
             }
             {
+              /* codespaces tab content */
               (tab == "Codespaces") ? (
                 <>
                   <li>
@@ -159,7 +201,9 @@ export default function CodeButton() {
                 </>
               ) : null
             }
+            {/* add more tab contents here */}
           </ul>
+          
         </div>
       </div>
 

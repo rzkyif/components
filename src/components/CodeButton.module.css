@@ -8,6 +8,30 @@
   overflow: visible;
 }
 
+/* ------------------------------ overall theme ----------------------------- */
+
+.codeButton {
+  --text: #24292f;
+  --text-dim: #57606a;
+  --text-active: #000000;
+  --text-link: #4598db;
+  --border: #d0d7de;
+  --bg: #ffffff;
+  --green: #238636;
+  --green-hover: #2ea643;
+  --green-active: #5bd171;
+  --orange: rgb(249 115 22);
+}
+
+:global .dark :local .codeButton {
+  --text: #a6acb3;
+  --text-dim: #8b949e;
+  --text-active: #ffffff;
+  --text-link: #4598db;
+  --border: #30363d;
+  --bg: #161b22;
+}
+
 .codeButton > .codeButtonSummary::marker {
   display: none;
 }
@@ -20,10 +44,10 @@
   @apply 
     flex items-center 
     px-2 py-1 rounded-md gap-1 h-8
-    border-[#30363d] border
-    text-white bg-[#238636] font-semibold select-none text-sm
-    hover:bg-[#2ea643]
-    active:bg-[#5bd171]
+    border-[var(--border)] border
+    text-white bg-[var(--green)] font-semibold select-none text-sm
+    hover:bg-[var(--green-hover)]
+    active:bg-[var(--green-active)]
 }
 
 .codeButton[open] > .codeButtonSummary::before {
@@ -48,20 +72,20 @@
 
 .codeButtonPanelTabPicker {
   @apply
-    flex border-[#30363d] text-sm
+    flex border-[var(--border)] text-sm
 }
 
 .codeButtonPanelTabPicker > button {
   @apply
     flex-1 py-2 px-4 rounded-md m-[-1px] rounded-b-none
-    text-[#a6acb3] hover:text-white border 
-    border-b-[#30363d] border-transparent
+    text-[var(--text-dim)] hover:text-[var(--text)] border 
+    border-b-[var(--border)] border-transparent
 }
 
 .codeButtonPanelTabPicker > button[current] {
   @apply
-  text-[#C9D1D9]
-  border-[#30363d] border-b-transparent  
+  text-[var(--text)]
+  border-[var(--border)] border-b-transparent  
 }
 
 /* ---------------------------------- panel --------------------------------- */
@@ -70,21 +94,21 @@
   @apply
     absolute flex flex-col rounded-md
     top-2 right-0
-    w-[400px] bg-[#161b22] text-sm text-[#C9D1D9] border-[#30363d] border
+    w-[400px] bg-[var(--bg)] text-sm text-[var(--text)] border-[var(--border)] border
 }
 
 .codeButtonPanelContainer > div::after {
   @apply
     absolute right-2 
     block content-[""] 
-    w-0 h-0 border-[8px] border-transparent border-b-[#161b22] -top-4
+    w-0 h-0 border-[8px] border-transparent border-b-[var(--bg)] -top-4
 }
 
 /* -------------------------------- panel row ------------------------------- */
 
 .codeButtonPanelContainer > div > ul > li {
   @apply
-    p-4 flex flex-col border-b border-[#30363d] mb-[-1px]
+    p-4 flex flex-col border-b border-[var(--border)] mb-[-1px]
 }
 .codeButtonPanelContainer > div > ul > li:last-child {
   @apply
@@ -104,7 +128,7 @@
     ml-auto 
     text-[0.7rem] font-bold
     justify-center items-center w-4 h-4
-    hover:text-blue-400
+    hover:text-[var(--text-link)]
 }
 .helpMark > span {
   display: none;
@@ -112,15 +136,15 @@
 .helpMark:hover > span {
   @apply
     flex absolute top-full right-0 mt-2 p-2 rounded-md rounded-tr-none
-    text-[#C9D1D9] whitespace-nowrap 
-    bg-neutral-600/50
+    text-[var(--text)] whitespace-nowrap 
+    bg-neutral-600
 }
 
 /* --------------------------------- buttons -------------------------------- */
 
 .button {
   @apply
-    hover:bg-neutral-500/25 active:bg-neutral-300/25 hover:text-white rounded-md
+    hover:bg-neutral-500/25 active:bg-neutral-300/25 hover:text-[var(--text-active)] rounded-md
 }
 
 .singleLetterButton {
@@ -134,11 +158,13 @@
 .tabNavigationButton {
   composes: button;
   @apply
-    py-1 px-2 mt-2 border-transparent border-2 rounded-b-none
+    relative py-1 px-2 mt-2 mb-2
+    after:absolute after:w-full after:content-[""] after:left-0 after:-bottom-1 after:block 
+    after:border-transparent after:border after:rounded-full
 }
 .tabNavigationButton[current] {
   @apply
-    border-b-orange-500 text-white
+    after:border-[var(--orange)]
 }
 
 /* ------------------------------- copy field ------------------------------- */
@@ -150,7 +176,7 @@
 .copyField > input {
   @apply
     flex-1 py-1 px-2 text-xs font-mono
-    border border-[#30363d] 
+    border border-[var(--border)] 
     bg-transparent rounded-l-md 
     outline-none
 
@@ -158,7 +184,7 @@
 .copyField > button {
   @apply
     flex h-full
-    border border-l-0 border-[#30363d] rounded-r-md py-1 px-2
+    border border-l-0 border-[var(--border)] rounded-r-md py-1 px-2
     hover:bg-neutral-500/25 active:bg-neutral-300/25
 }
 
@@ -189,7 +215,7 @@
 
 .smallDimText {
   @apply
-    text-xs text-[#8b949e] text-center
+    text-xs text-[var(--text-dim)] text-center
 }
 
 .boldText {
@@ -199,5 +225,5 @@
 
 .linkText {
   @apply
-    text-xs text-blue-300 hover:underline
+    text-xs text-[var(--text-link)] hover:underline
 }
