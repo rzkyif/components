@@ -51,7 +51,7 @@ const { name, description, valign = "top", halign = "center", minw = 0 } = Astro
 			checkWidth()
 		</script>
 	</div>
-	<main class="relative flex flex-col w-full p-4 flex-1 bg-[var(--bg-4)]">
+	<main class="relative flex flex-col w-full p-4 flex-1 bg-[var(--bg-6)]">
 		<div class={`flex flex-col w-full h-full p-4 bg-transparent border-2 border-dashed border-[var(--text)] ${valign=='top'?'justify-start':''} ${valign=='center'?'justify-center':''} ${valign=='bottom'?'justify-end':''} ${halign=='left'?'items-start':''} ${halign=='center'?'items-center':''} ${halign=='right'?'items-end':''}`}>
 			<slot />
 		</div>
