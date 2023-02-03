@@ -34,7 +34,7 @@ const { name, description, valign = "top", halign = "center", minw = 0 } = Astro
 		<span id="width-warning" class="
 			flex py-2 px-4 mt-4 ml-auto justify-center 
 			text-justify text-xs sm:text-sm font-semibold
-			bg-orange-300 rounded-xl
+			text-[var(--text)] bg-orange-300 dark:bg-orange-400 rounded-xl
 		" data-minw={minw}>
 			This component is designed for a minimum width of {minw}px.{minw<640?" Not fit for mobile devices.":""}
 		</span>
