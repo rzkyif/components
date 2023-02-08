@@ -53,7 +53,7 @@ export default function BufferedList({
       className="flex flex-col gap-2 overflow-y-scroll overflow-x-hidden w-full"
       style={{height: displayHeight, display: 'flex', flexDirection: 'column', overflow: 'auto', width: '100%'}}
       onScroll={(e) => {
-        const scrolledRegion = Math.round((e.target as HTMLElement).scrollTop/REGION_HEIGHT)
+        const scrolledRegion = Math.round(e.target.scrollTop/REGION_HEIGHT)
         if (currentRegion != scrolledRegion) {
           setCurrentRegion(scrolledRegion)
         }
