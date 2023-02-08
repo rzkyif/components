@@ -1,0 +1,18 @@
+---
+import Preview from '../layouts/Preview.astro';
+import BufferedList from '../components/BufferedList';
+
+const ROW_COUNT = 10000
+const ROW_DATA = Array.from({length: ROW_COUNT}, (_,i) => `This is row ${i}!`)
+---
+
+<Preview 
+  name="BufferedList" 
+  description={`
+    A basic buffered list that can display a large amount of items with a small amount of HTML elements.
+  `}
+  valign="center"
+  halign="center"
+>
+	<BufferedList data={ROW_DATA} displayHeight={400} rowHeight={32} client:load/>
+</Preview>
