@@ -1,9 +1,11 @@
-import { useState } from "react"
+import { useState, useEffect } from "react"
+
 import IconLight from "~icons/material-symbols/light-mode"
 import IconDark from "~icons/material-symbols/dark-mode"
 import IconSystem from "~icons/mdi/theme-light-dark"
 import IconGithub from "~icons/mdi/github"
-import { useEffect } from "react"
+
+import s from "./Header.module.css"
 
 export default function Header() {
   const [theme, setTheme] = useState("system")
@@ -11,14 +13,18 @@ export default function Header() {
   useEffect(() => {
     if ('theme' in localStorage) {
       setTheme(localStorage.theme)
+    } else {
+      if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.documentElement.classList.add('dark')
+      } else {
+        document.documentElement.classList.remove('dark')
+      }
     }
   })
 
   function toggleTheme() {
     let nextTheme = 
-      (theme == "dark") ? "light" :
-      (theme == "light") ? "system" :
-      "dark"
+      (theme == "dark") ? "light" : "dark"
     if (nextTheme != "system") {
       localStorage.theme = nextTheme
     } else {
@@ -44,9 +50,9 @@ export default function Header() {
         flex items-center
         w-screen max-w-5xl
       ">
-        <a className="
-          font-extrabold font-mono whitespace-nowrap cursor-pointer hover:underline
-        " href="/components/">
+        <a className={`
+          font-extrabold font-mono whitespace-nowrap cursor-pointer ${s.hoverGlow}
+        `} href="/components/">
           rzkyif / components
         </a>
         <div className="flex ml-auto items-center">

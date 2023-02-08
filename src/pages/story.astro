@@ -1,0 +1,16 @@
+---
+import Preview from '../layouts/Preview.astro';
+import Story from '../components/Story.svelte';
+---
+
+<Preview 
+  name="Story" 
+  description={`
+    My attempt at Instagram's story player.
+  `}
+  type="svelte"
+  valign="center"
+  halign="center"
+>
+	<Story client:load/>
+</Preview>

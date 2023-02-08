@@ -3,14 +3,16 @@ import Preview from '../layouts/Preview.astro';
 import BufferedList from '../components/BufferedList';
 
 const ROW_COUNT = 10000
-const ROW_DATA = Array.from({length: ROW_COUNT}, (_,i) => `This is row ${i}!`)
+const ROW_DATA = Array.from({length: ROW_COUNT}, (_,i) => `This is row ${i+1}!`)
 ---
 
 <Preview 
   name="BufferedList" 
   description={`
     A basic buffered list that can display a large amount of items with a small amount of HTML elements.
+    The example below displays a list containing 10000 rows by only using 39 elements.
   `}
+  type="react"
   valign="center"
   halign="center"
 >

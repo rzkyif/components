@@ -1,30 +1,43 @@
 ---
-import Default from './Default.astro';
-import Icon from 'astro-icon'
+import Default from './Default.astro'
+import IconLink from '~icons/mdi/link-variant'
 
 export interface Props {
 	name: string
 	description: string
+	type: string
 	valign?: string
 	halign?: string
 	minw?: number
 }
 
-const { name, description, valign = "top", halign = "center", minw = 0 } = Astro.props
+const FILE_EXTENSIONS = {
+	"react": "jsx",
+	"svelte": "svelte"
+}
+
+const { name, description, type, valign = "top", halign = "center", minw = 0 } = Astro.props
 ---
 
 <Default title={name} description={description}>
 	<div class="
 		flex flex-col p-8
-		text-[var(--text-inverse)] bg-[var(--accent-6)]
-	">
-		<div class="flex items-center mb-4 mt-6">
-			<h1 class="font-extrabold text-4xl">{name}</h1>
+	" style= {{background: `var(--bg-${type})`}}>
+		<div class="flex items-center mb-4 mt-6 text-4xl">
+			<div class="flex flex-col">
+				<h1 class="font-extrabold">{name}</h1>
+				<span class="mt-1 mb-auto text-xs">{type.toString().toUpperCase()} COMPONENT</span>
+			</div>
 			<a 
-				href={`https://github.com/rzkyif/components/tree/master/src/components/${name}.jsx`}
+				href={`https://github.com/rzkyif/components/tree/master/src/components/${name}.${FILE_EXTENSIONS[type]}`}
 				target="_blank"
-				class="ml-auto underline text-sm p-2 rounded-full hover:outline"
-			><Icon pack="mdi" name="link-variant" class="h-8"/></a>
+				class="ml-auto underline text-2xl p-2 rounded-full hover:outline"
+			>
+			{
+				/* @ts-ignore */
+				<IconLink/>
+			}
+		</a>
 		</div>
 		{
 			description.split("\n").map((part) => (
@@ -34,9 +47,9 @@ const { name, description, valign = "top", halign = "center", minw = 0 } = Astro
 		<span id="width-warning" class="
 			flex py-2 px-4 mt-4 ml-auto justify-center 
 			text-justify text-xs sm:text-sm font-semibold
-			text-[var(--text)] bg-orange-300 dark:bg-orange-400 rounded-xl
+			text-[var(--text)] bg-orange-400 dark:bg-orange-600 rounded-xl
 		" data-minw={minw}>
-			This component is designed for a minimum width of {minw}px.{minw<640?" Not fit for mobile devices.":""}
+			This component is designed for a minimum width of {minw}px.{minw<640?" Not suitable for mobile devices.":""}
 		</span>
 		<script>
 			const widthWarningElement = document.getElementById("width-warning")

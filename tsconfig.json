@@ -4,7 +4,9 @@
     "jsx": "react-jsx",
     "jsxImportSource": "react",
     "types": [
-      "unplugin-icons/types/react"
+      "unplugin-icons/types/react",
+      "unplugin-icons/types/astro",
+      "unplugin-icons/types/svelte"
     ]
   }
 }
